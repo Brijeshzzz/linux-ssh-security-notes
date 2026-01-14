@@ -142,3 +142,60 @@ That’s why `journalctl -u ssh` did not show login logs.
 **One line:**  
 If there is no history, nothing will be shown.
 ![alt text](image.png)
+
+# Day 2 – SSH Failed Login Hands-On (Kali Linux)
+
+## Environment
+- OS: Kali GNU/Linux 2025.4
+- SSH service: OpenSSH (systemd)
+- Log source: systemd journal
+
+---
+
+## SSH Service Start
+- SSH service was started using systemctl
+- Service was active and listening on port 22
+
+---
+
+## Failed SSH Login Test
+- Attempted SSH login to localhost using a non-existing user
+- Username used: test
+- Password entered incorrectly multiple times
+- Authentication failed as expected
+
+---
+
+## Observed SSH Log Events
+The following events were recorded in SSH logs:
+
+- Invalid user detected
+- Failed password attempts logged
+- Connection closed after multiple failures
+- PAM authentication failures recorded
+
+---
+
+## Log Source Used
+- SSH logs were verified using:
+  - journalctl -u ssh
+
+Note:
+- Kali Linux does not use /var/log/auth.log by default
+- SSH authentication logs are stored in systemd journal
+
+---
+
+## SOC Relevance
+- Failed SSH login attempts indicate possible brute force activity
+- Invalid user attempts are a common attacker behavior
+- These logs are key indicators used for SSH attack detection
+
+---
+
+## Day 2 Outcome
+- SSH service behavior understood
+- Failed authentication events successfully generated
+- SSH logs verified and analyzed on Kali Linux
+
+![alt text](image-1.png)
