@@ -79,3 +79,65 @@ This log tells:
 - Understood SSH brute force attacks
 - Identified SSH log locations
 - Learned key log indicators for SOC monitoring
+
+## Command Syntax Meaning (Only Meaning, No Extra Explanation)
+
+**Command:**
+sudo journalctl -u ssh
+
+### Word-by-word meaning:
+
+**sudo**  
+Admin permission  
+
+Required to read system logs
+
+**journalctl**  
+Command used to view systemd logs  
+
+*(read-only, does not make any changes)*
+
+**-u**  
+Unit option  
+
+Shows only a specific service
+
+**ssh**  
+SSH service name  
+
+*(short form of ssh.service)*
+
+---
+
+### Full meaning (one line):
+
+“Show all system logs related to the SSH service with admin permission”
+
+---
+
+### Important (syntax point):
+
+- This command does **not** start or stop the service  
+- It only shows **history (logs)**
+
+---
+
+If you want another command syntax explained,  
+just paste the command —  
+I will explain it in the same format.
+
+---
+
+### Clarification:
+
+**Correct. ✅**
+
+On your current system:
+
+- No SSH login attempts were made  
+- So there is **no history**
+
+That’s why `journalctl -u ssh` did not show login logs.
+
+**One line:**  
+If there is no history, nothing will be shown.
